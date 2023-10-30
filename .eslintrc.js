@@ -27,6 +27,19 @@ module.exports = {
         "react"
     ],
     "rules": {
+        "indent": [
+            "warn",
+            2,
+        ],
+        "quotes": [
+            "warn",
+            "single"
+        ],
+        "semi": [
+            "warn",
+            "always"
+        ],
+
         "react/react-in-jsx-scope": "off",
     }
 }
