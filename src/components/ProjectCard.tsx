@@ -1,11 +1,13 @@
-import { Box, Card, CardActions, CardContent, CardMedia, Paper } from '@mui/material';
+import { Box, Card, CardActions, CardContent, CardMedia, IconButton, MobileStepper, Paper } from '@mui/material';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
-interface ProjectCardProps {
+export interface IProjectCardProps {
   images: { path: string }[];
   startDate: string;
   endDate: string;
@@ -14,9 +16,9 @@ interface ProjectCardProps {
   buttons: { name: string; link: string }[];
 }
 
-export const ProjectCard = (props: ProjectCardProps) => {
+export const ProjectCard = (props: IProjectCardProps) => {
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = 1; // images.length
+  const maxSteps = props.images.length;
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -57,6 +59,20 @@ export const ProjectCard = (props: ProjectCardProps) => {
               </div>
             ))}
           </AutoPlaySwipeableViews>
+          <MobileStepper 
+            steps={maxSteps}
+            activeStep={activeStep}            
+            nextButton={
+              <IconButton size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                <KeyboardArrowRightIcon />
+              </IconButton>
+            } 
+            backButton={
+              <IconButton size="small" onClick={handleBack} disabled={activeStep === 0}>
+                <KeyboardArrowLeftIcon />
+              </IconButton>
+            } 
+          />
         </CardMedia>
         <CardContent></CardContent>
         <CardActions></CardActions>
