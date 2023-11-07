@@ -1,5 +1,5 @@
-import { Box, Typography } from "@mui/material";
-import Illustration from "../assets/about-illustration.png";
+import { Box, Typography } from '@mui/material';
+import Illustration from '../assets/about-illustration.png';
 
 export const About = () => {
   return (
