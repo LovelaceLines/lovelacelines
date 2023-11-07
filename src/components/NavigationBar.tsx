@@ -19,10 +19,11 @@ export const NavigationBar = () => {
             <img src={logo} alt='Logo' style={{height:'24px'}}/>
           </Box>
           <Box>
-            <Link>Inicio</Link>
-            <Link>Soluções</Link>
-            <Link>Desenvolvimento</Link>
-            <Link>Contatos</Link>
+            <Link href='/home'>Inicio</Link>
+            <Link href='/sobre'>Sobre</Link>
+            <Link href='/solucoes'>Soluções</Link>
+            <Link href='/processo'>Desenvolvimento</Link>
+            <Link href='/contato'>Contatos</Link>
           </Box>
           <Box>
             <IconButton onClick={toggleTheme}>
