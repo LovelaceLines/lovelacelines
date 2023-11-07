@@ -7,19 +7,21 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 export const Contact = () => {
   return (
-    <Container>
-      <Typography variant="h1">Contato</Typography>
-      <Typography variant="body1">Entre em contato conosco, vamos nos reunir e entender as suas necessitades!</Typography>
-      <Box>
-        <WhatsAppIcon />
-        <InstagramIcon />
-        <EmailIcon />
-      </Box>
-      <Typography variant="h6">Nos siga também em</Typography>
-      <Box>
-        <LinkedInIcon />
-        <GitHubIcon />
-      </Box>
-    </Container>
+    <Box id="contact">
+      <Container>
+        <Typography variant="h1">Contato</Typography>
+        <Typography variant="body1">Entre em contato conosco, vamos nos reunir e entender as suas necessitades!</Typography>
+        <Box>
+          <WhatsAppIcon />
+          <InstagramIcon />
+          <EmailIcon />
+        </Box>
+        <Typography variant="h6">Nos siga também em</Typography>
+        <Box>
+          <LinkedInIcon />
+          <GitHubIcon />
+        </Box>
+      </Container>
+    </Box>
   );
 };

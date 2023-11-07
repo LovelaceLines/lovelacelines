@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { IProjectCardProps, ProjectCard } from '../components/ProjectCard';
 
 const projectCardProps: IProjectCardProps[] = [
@@ -44,15 +44,17 @@ const projectCardProps: IProjectCardProps[] = [
 
 export const Projects = () => {
   return (
-    <Box>
-      <Typography variant="h1">Nossas últimas <strong>soluções</strong></Typography>
-      <Box>
+    <Box id="projects">
+      <Container>
+        <Typography variant="h1">Nossas últimas <strong>soluções</strong></Typography>
         <Box>
           {projectCardProps.map((props, index) => (
-            <ProjectCard key={index} {...props} />
+            <Box key={index}>
+              <ProjectCard key={index} {...props} />
+            </Box>
           ))}
         </Box>
-      </Box>
+      </Container>
     </Box>
   );
 };

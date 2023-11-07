@@ -6,6 +6,7 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import logo from '../assets/logo.svg';
 import logoAlternative from '../assets/logo.alternative.svg';
 import { useTheme } from '../shared/themes';
+import { Link as ScrollLink } from 'react-scroll';
 
 
 export const NavigationBar = () => {
@@ -19,11 +20,11 @@ export const NavigationBar = () => {
             <img src={logo} alt='Logo' style={{height:'24px'}}/>
           </Box>
           <Box>
-            <Link href='/home'>Inicio</Link>
-            <Link href='/sobre'>Sobre</Link>
-            <Link href='/solucoes'>Soluções</Link>
-            <Link href='/processo'>Desenvolvimento</Link>
-            <Link href='/contato'>Contatos</Link>
+            <ScrollLink to="home" smooth={true} duration={500}>Início</ScrollLink>
+            <ScrollLink to="about" smooth={true} duration={500}>Sobre</ScrollLink>
+            <ScrollLink to="projects" smooth={true} duration={500}>Soluções</ScrollLink>
+            <ScrollLink to="process" smooth={true} duration={500}>Desenvolvimento</ScrollLink>
+            <ScrollLink to="contact" smooth={true} duration={500}>Contato</ScrollLink>
           </Box>
           <Box>
             <IconButton onClick={toggleTheme}>

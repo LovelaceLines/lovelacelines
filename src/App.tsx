@@ -11,6 +11,11 @@ function App() {
       <BrowserRouter>
         <NavigationBar />
         <AppRoutes />
+        <Home />
+        <About />
+        <Projects />
+        <Process />
+        <Contact />
       </BrowserRouter>
     </AppThemeProvider>
   );
