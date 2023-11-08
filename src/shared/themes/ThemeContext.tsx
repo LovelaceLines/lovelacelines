@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { Box, CssBaseline, ThemeProvider } from '@mui/material';
+import { Box, CssBaseline, Theme, ThemeProvider } from '@mui/material';
 import { DarkTheme } from './DarkTheme';
 import { LightTheme } from './LightTheme';
 

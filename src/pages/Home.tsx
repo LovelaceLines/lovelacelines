@@ -1,20 +1,37 @@
-import { Box, Button, Container, Typography } from '@mui/material';
+import { Box, Button, Container, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import Background from '../assets/home-background.png';
+import BackgroundImage from '../assets/home-background.png';
+
+const backgroundStyles = {
+  backgroundImage: `url(${BackgroundImage})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundRepeat: 'no-repeat',
+  backgroundAttachment: 'fixed',
+  minHeight: '100vh',
+  flex: '1',
+  display: 'flex',
+  alignItems: 'center',
+};
 
 export const Home = () => {
+  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+  
   return (
-    <Box id="home">
-      <Container>
-        <img src={Background} alt="background" />
-        <Box>
-          <Typography variant="h1">Lovelace Lines</Typography>
-          <Typography variant="body1">Desenvolvendo soluções de modo descomplicado!</Typography>
-        </Box>
-        <Button variant='outlined' endIcon={<KeyboardArrowDownIcon />}>
-          Veja mais
-        </Button>
-      </Container>
-    </Box>
+    <div id="home" style={backgroundStyles}>
+      <Box flex='1'>
+        <Container>
+          <Stack alignItems='flex-start' spacing={4}>
+            <Box>
+              <Typography color='text.secondary' variant={isSmallScreen ? 'h2' : 'h1'}>Lovelace Lines</Typography>
+              <Typography color='text.secondary' variant="h6">Desenvolvendo soluções de modo descomplicado!</Typography>
+            </Box>
+            <Button variant='outlined' endIcon={<KeyboardArrowDownIcon />} href='#about'>
+              Veja mais
+            </Button>
+          </Stack>
+        </Container>
+      </Box>
+    </div>
   );
 };

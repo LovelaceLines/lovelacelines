@@ -1,5 +1,5 @@
 import { createTheme } from '@mui/material';
-import { amber, grey, pink } from '@mui/material/colors';
+import { amber, blueGrey, grey, pink } from '@mui/material/colors';
 
 export const DarkTheme = createTheme({
   palette: {
@@ -15,12 +15,12 @@ export const DarkTheme = createTheme({
       contrastText: grey[800],
     },
     background: {
-      paper: grey[50],
-      default: grey[800],
+      paper: grey[900],
+      default: blueGrey[900],
     },
     text: {
       primary: grey[50],
-      secondary: grey[800],
+      secondary: grey[900],
     }
   }
 });

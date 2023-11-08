@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, IconButton, MobileStepper, Paper, Typography } from '@mui/material';
+import { Box, Button, Card, CardActions, CardContent, CardMedia, Container, IconButton, MobileStepper, Paper, Stack, Typography } from '@mui/material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { useState } from 'react';
@@ -24,48 +24,57 @@ export const ProjectCard = (props: IProjectCardProps) => {
     setActiveStep((prevActiveStep) => prevActiveStep - 1);
   };
 
+  const ImageStyle = {
+    width: '100%', 
+    aspectRatio: '16/9'
+  };
+
+  const Carousel = () => (
+    <CardMedia style={{ 'position': 'relative' }}>
+      <img src={props.images[activeStep].path} alt={`Step ${activeStep}`} style={ImageStyle} />
+      <MobileStepper variant='dots' steps={maxSteps} position="static" activeStep={activeStep}
+        nextButton={
+          <IconButton size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+            <KeyboardArrowRightIcon />
+          </IconButton>
+        }
+        backButton={
+          <IconButton size="small" onClick={handleBack} disabled={activeStep === 0}>
+            <KeyboardArrowLeftIcon />
+          </IconButton>
+        }
+      />
+    </CardMedia>
+  );
+
+  const Details = () => (
+    <Box>
+      <Typography variant='caption'>{props.startDate} • {props.endDate}</Typography>
+      <Typography variant="h6">{props.title}</Typography>
+      <Typography variant='body2'>{props.description}</Typography>
+    </Box>
+  );
+
+  const Buttons = () => (
+    <Stack direction='row' spacing={2}>
+      {props.buttons.map((button, index) => (
+        <Button variant='outlined' size='small' key={index} href={button.link}>{button.name}</Button>
+      ))}
+    </Stack>
+  );
+
   return (
-    <Container>
-      <Card>
-        <Paper>
-          <CardMedia>
-            <img
-              src={props.images[activeStep].path}
-              alt={`Step ${activeStep}`}
-              style={{ width: '100%' }}
-            />
-            <MobileStepper
-              steps={maxSteps}
-              position="static"
-              variant="text"
-              activeStep={activeStep}
-              nextButton={
-                <IconButton size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
-                  <KeyboardArrowRightIcon />
-                </IconButton>
-              }
-              backButton={
-                <IconButton size="small" onClick={handleBack} disabled={activeStep === 0}>
-                  <KeyboardArrowLeftIcon />
-                </IconButton>
-              }
-            />
-          </CardMedia>
-          <CardContent>
-            <Box>
-              <Typography>{props.startDate} • {props.endDate}</Typography>
-              <Typography variant="h2">{props.title}</Typography>
-              <Typography>{props.description}</Typography>
-              <Box>
-                {props.buttons.map((button, index) => (
-                  <Button key={index} href={button.link}>{button.name}</Button>
-                ))}
-              </Box>
-            </Box>
-          </CardContent>
-          <CardActions></CardActions>
-        </Paper>
-      </Card>
-    </Container>
+    <Card>
+      <Paper>
+        <Carousel />
+        <CardContent>
+          <Stack spacing={2}>
+            <Details />
+            <Buttons />
+          </Stack>
+        </CardContent>
+        <CardActions></CardActions>
+      </Paper>
+    </Card>
   );
 };

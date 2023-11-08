@@ -1,38 +1,109 @@
-import { AppBar, Box, Button, Container, IconButton, Link, SvgIcon, Toolbar } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import Brightness5Icon from '@mui/icons-material/Brightness5';
-import Brightness4Icon from '@mui/icons-material/Brightness4';
+import { AppBar, Box, Container, IconButton, Link, Menu, MenuItem, Stack, SxProps, Theme, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { Brightness4, Brightness5, GitHub, LinkedIn, Menu as MenuIcon } from '@mui/icons-material';
+import { Link as ScrollLink } from 'react-scroll';
 import logo from '../assets/logo.svg';
 import logoAlternative from '../assets/logo.alternative.svg';
 import { useTheme } from '../shared/themes';
-import { Link as ScrollLink } from 'react-scroll';
+import { useState } from 'react';
 
-
-export const NavigationBar = () => {
+export const NavigationBar = () => { 
   const { themeName, toggleTheme } = useTheme();
+  const logoSrc = themeName === 'light' ? logoAlternative : logo;
+
+  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
+
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const navLinks = [
+    { to: 'home', text: 'Início' },
+    { to: 'about', text: 'Sobre' },
+    { to: 'projects', text: 'Soluções' },
+    { to: 'process', text: 'Desenvolvimento' },
+    { to: 'contact', text: 'Contato' },
+  ];
+  
+  const socialLinks = [
+    { url: 'https://www.linkedin.com/in/lovelacelines/', icon: <LinkedIn /> },
+    { url: 'https://github.com/LovelaceLines', icon: <GitHub /> },
+  ];
+
+  const Logo = ({src}: {src: string}) => (
+    <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
+      <img src={src} alt='Logo' style={{ height: '30px' }} />
+    </Stack>
+  );
+
+  const NavigationLinks = () => (
+    <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={isSmallScreen ? 0 : 4} color='inherit'>
+      {navLinks.map((link) => (
+        <ScrollLink key={link.to} to={link.to} smooth={true} duration={500}>
+          <MenuItem key={link.to} onClick={handleCloseNavMenu}>
+            {link.text}
+          </MenuItem>
+        </ScrollLink>
+      ))}
+    </Stack>
+  );
+
+  const SocialLinks = () => (
+    <Box>
+      <IconButton onClick={toggleTheme} color='inherit'>
+        {themeName === 'light' ? <Brightness4 /> : <Brightness5 />}
+      </IconButton>
+      {isSmallScreen ? null : socialLinks.map((link) => (
+        <IconButton key={link.url} color='inherit' href={link.url} target='_blank' rel='noreferrer'>
+          {link.icon}
+        </IconButton>
+      ))}
+    </Box>
+  );
+
+  const HamburgerMenu = () => (
+    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+      <IconButton onClick={handleOpenNavMenu} size='large' color='inherit' >
+        <MenuIcon />
+      </IconButton>
+      <Menu 
+        anchorEl={anchorElNav} 
+        open={Boolean(anchorElNav)} 
+        onClose={handleCloseNavMenu}
+        keepMounted
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        sx={{
+          display: { xs: 'block', md: 'none' },
+        }}>
+        <NavigationLinks />
+      </Menu>
+    </Box>
+  );
 
   return (
-    <AppBar style={{height:'56px'}}>
+    <AppBar position='sticky'>
       <Container>
-        <Toolbar>
-          <Box>
-            <img src={logo} alt='Logo' style={{height:'24px'}}/>
-          </Box>
-          <Box>
-            <ScrollLink to="home" smooth={true} duration={500}>Início</ScrollLink>
-            <ScrollLink to="about" smooth={true} duration={500}>Sobre</ScrollLink>
-            <ScrollLink to="projects" smooth={true} duration={500}>Soluções</ScrollLink>
-            <ScrollLink to="process" smooth={true} duration={500}>Desenvolvimento</ScrollLink>
-            <ScrollLink to="contact" smooth={true} duration={500}>Contato</ScrollLink>
-          </Box>
-          <Box>
-            <IconButton onClick={toggleTheme}>
-              {themeName === 'light' ? <Brightness4Icon /> : <Brightness5Icon />}
-            </IconButton>
-            <IconButton><LinkedInIcon /></IconButton>
-            <IconButton><GitHubIcon /></IconButton>
-          </Box>
+        <Toolbar disableGutters>
+          <Stack flex='1' alignItems='center' direction='row' justifyContent='space-between'>
+            <HamburgerMenu />
+            <Logo src={logoSrc} />
+            <Box sx={{ display: { xs:'none', md: 'flex' } }}>
+              <NavigationLinks />
+            </Box>
+            <SocialLinks />
+          </Stack>
         </Toolbar>
       </Container>
     </AppBar>
