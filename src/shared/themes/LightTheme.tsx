@@ -1,19 +1,11 @@
 import { createTheme } from '@mui/material';
-import { amber, grey, pink } from '@mui/material/colors';
+import { grey } from '@mui/material/colors';
+import { commonTheme } from './ExtendsTheme';
 
 export const LightTheme = createTheme({
   palette: {
     mode: 'light',
-    primary: {
-      main: pink.A400,
-      dark: pink[600],
-      contrastText: grey[50],
-    },
-    secondary: {
-      main: amber[500],
-      dark: amber.A700,
-      contrastText: grey[800],
-    },
+    ...commonTheme,
     background: {
       paper: grey[50],
       default: grey[100],

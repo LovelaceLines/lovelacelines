@@ -1,26 +1,18 @@
 import { createTheme } from '@mui/material';
-import { amber, blueGrey, grey, pink } from '@mui/material/colors';
+import { blueGrey, grey } from '@mui/material/colors';
+import { commonTheme } from './ExtendsTheme';
 
 export const DarkTheme = createTheme({
   palette: {
     mode: 'dark',
-    primary: {
-      main: pink.A400,
-      dark: pink[600],
-      contrastText: grey[50],
-    },
-    secondary: {
-      main: amber[500],
-      dark: amber.A700,
-      contrastText: grey[800],
-    },
+    ...commonTheme,
     background: {
       paper: grey[900],
-      default: blueGrey[900],
+      default: blueGrey[800],
     },
     text: {
       primary: grey[50],
-      secondary: grey[900],
+      secondary: grey[800],
     }
   }
 });
