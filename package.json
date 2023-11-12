@@ -1,7 +1,7 @@
 {
-  "name": "lovelace-lines",
+  "name": "landing-page",
   "version": "0.1.0",
-  "homepage": "https://LovelaceLines.github.io/deployments",
+  "homepage": "https://LovelaceLines.github.io/landing-page",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
