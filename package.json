@@ -1,6 +1,7 @@
 {
-  "name": "landing-page",
+  "name": "lovelace-lines",
   "version": "0.1.0",
+  "homepage": "https://LovelaceLines.github.io/deployments",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -30,7 +31,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +55,7 @@
   },
   "devDependencies": {
     "@types/react-scroll": "^1.8.10",
-    "@types/react-swipeable-views-utils": "^0.13.6"
+    "@types/react-swipeable-views-utils": "^0.13.6",
+    "gh-pages": "^6.0.0"
   }
 }
