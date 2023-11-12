@@ -1,5 +1,5 @@
-import { createContext, useContext, useState } from 'react';
-import { Box, CssBaseline, Theme, ThemeProvider } from '@mui/material';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { Box, CssBaseline, ThemeProvider } from '@mui/material';
 import { DarkTheme } from './DarkTheme';
 import { LightTheme } from './LightTheme';
 
@@ -20,15 +20,21 @@ export const AppThemeProvider = ({ children }: IAppThemeProviderProps) => {
   const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = () => {
-    setThemeName(oldThemeName => (oldThemeName === 'light' ? 'dark' : 'light')); 
+    setThemeName(themeName === 'light' ? 'dark' : 'light');
+    localStorage.setItem('theme', themeName === 'light' ? 'dark' : 'light');
   };
 
   const theme = themeName === 'light' ? LightTheme : DarkTheme;
 
+  useEffect(() => {
+    const localTheme = localStorage.getItem('theme') as 'light' | 'dark';
+    if (localTheme) setThemeName(localTheme);
+  }, []);
+
   return (
     <ThemeContext.Provider value={{ themeName, toggleTheme }}>
       <ThemeProvider theme={theme}>
-        <CssBaseline />
+        <CssBaseline enableColorScheme />
         <Box>
           {children}
         </Box>

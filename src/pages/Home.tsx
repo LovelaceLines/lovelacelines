@@ -23,8 +23,8 @@ export const Home = () => {
         <Container>
           <Stack alignItems='flex-start' spacing={4}>
             <Box>
-              <Typography color='text.secondary' variant={isSmallScreen ? 'h2' : 'h1'}>Lovelace Lines</Typography>
-              <Typography color='text.secondary' variant="h6">Desenvolvendo soluções de modo descomplicado!</Typography>
+              <Typography color='primary.contrastText' variant={isSmallScreen ? 'h2' : 'h1'}>Lovelace Lines</Typography>
+              <Typography color='primary.contrastText' variant="h6">Desenvolvendo soluções de modo descomplicado!</Typography>
             </Box>
             <Button variant='outlined' endIcon={<KeyboardArrowDownIcon />} href='#about'>
               Veja mais

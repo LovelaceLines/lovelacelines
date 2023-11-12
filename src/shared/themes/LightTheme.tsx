@@ -13,6 +13,7 @@ export const LightTheme = createTheme({
     text: {
       primary: grey[800],
       secondary: grey[50],
+      disabled: grey[400],
     }
   }
 });

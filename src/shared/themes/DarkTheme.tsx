@@ -8,11 +8,12 @@ export const DarkTheme = createTheme({
     ...commonTheme,
     background: {
       paper: grey[900],
-      default: blueGrey[800],
+      default: blueGrey[900],
     },
     text: {
       primary: grey[50],
       secondary: grey[800],
+      disabled: grey[400],
     }
   }
 });

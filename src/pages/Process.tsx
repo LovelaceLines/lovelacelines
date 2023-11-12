@@ -31,27 +31,27 @@ export const Process = () => {
             <TimelineDot variant="outlined" color='primary' />
             <TimelineConnector />
           </TimelineSeparator>
-          <TimelineContent>Reunião</TimelineContent>
+          <TimelineContent color='secondary.contrastText'>Reunião</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
             <TimelineDot variant="outlined" color='primary' />
             <TimelineConnector color='primary' />
           </TimelineSeparator>
-          <TimelineContent>Prototipação</TimelineContent>
+          <TimelineContent color='secondary.contrastText'>Prototipação</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
             <TimelineDot variant="outlined" color='primary' />
             <TimelineConnector color='primary' />
           </TimelineSeparator>
-          <TimelineContent>Aprovação</TimelineContent>
+          <TimelineContent color='secondary.contrastText'>Aprovação</TimelineContent>
         </TimelineItem>
         <TimelineItem>
           <TimelineSeparator>
             <TimelineDot variant="outlined" color='primary' />
           </TimelineSeparator>
-          <TimelineContent>Desenvolvimento</TimelineContent>
+          <TimelineContent color='secondary.contrastText'>Desenvolvimento</TimelineContent>
         </TimelineItem>
       </Timeline>
     </Box>
@@ -62,11 +62,11 @@ export const Process = () => {
       <Box flex='1'>
         <Container>
           <Stack spacing={4}>
-            <Typography variant='h4'>Nosso processo de desenvolvimento</Typography>
+            <Typography variant='h4' color='secondary.contrastText'>Nosso processo de desenvolvimento</Typography>
             <Stack direction={isSmallScreen ? 'column-reverse' : 'row'} justifyContent='space-between' spacing={2}>
               <Stack spacing={2} width={isSmallScreen ? 'auto' : '50%'} >
-                <Typography variant='body1' align='justify'>Conosco, durante todo o processo de desenvolvimento, o <strong>cliente é um pilar essencial</strong> para o resultado correto do produto, participando das reuniões e aprovando os protótipos. Desse modo, garantimos a solução que ele <strong>necessita</strong>!</Typography>
-                <Typography variant='body1' align='justify'>Além disso, para evitar longos períodos de espera, entregamos o produto por partes (incrementos) capazes de <strong>resolver</strong> o problema enquanto desenvolvemos evoluções e novas funcionalidades para aprimorar a experiencia do usuário.</Typography>
+                <Typography variant='body1' align='justify' color='secondary.contrastText'>Conosco, durante todo o processo de desenvolvimento, o <strong>cliente é um pilar essencial</strong> para o resultado correto do produto, participando das reuniões e aprovando os protótipos. Desse modo, garantimos a solução que ele <strong>necessita</strong>!</Typography>
+                <Typography variant='body1' align='justify' color='secondary.contrastText'>Além disso, para evitar longos períodos de espera, entregamos o produto por partes (incrementos) capazes de <strong>resolver</strong> o problema enquanto desenvolvemos evoluções e novas funcionalidades para aprimorar a experiencia do usuário.</Typography>
               </Stack>
               <AppTimeLine />
             </Stack>
