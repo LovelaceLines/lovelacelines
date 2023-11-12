@@ -45,7 +45,9 @@ export const FeedInstagram = () => {
   }, []);
 
   const Reels = (post: FeedInstagramProps) => (
-    <video src={post.media_url} controls autoPlay muted loop width='100%' />
+    <Link href={post.permalink} target='_blank' rel='noreferrer'>
+      <video src={post.media_url} controls autoPlay muted loop width='100%' />
+    </Link>
   );
 
   const PublicationReels = (post: FeedInstagramProps[]) => (
@@ -88,10 +90,13 @@ export const FeedInstagram = () => {
     <>
       {feed.length === 0 ? null : (
         <Container maxWidth='md' disableGutters={isSmallScreen}>
-          <Box>
-            {!isSmallScreen && PublicationReels(feed)}
-            {PublicationImage(feed)}
-          </Box>
+          <Stack spacing={4}>
+            <Typography variant="h4">Também estamos presente no <Link underline='hover' href='https://www.instagram.com/lovelacelines/' target='_blank' rel='noreferrer'>Instagram</Link></Typography>
+            <Box>
+              {!isSmallScreen && PublicationReels(feed)}
+              {PublicationImage(feed)}
+            </Box>
+          </Stack>
         </Container>
       )}
     </>

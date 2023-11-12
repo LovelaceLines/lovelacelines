@@ -30,6 +30,7 @@ export const About = () => {
       <Stack 
         id="about" 
         margin={isSmallScreen ? '20% 0' : '3% 0'} 
+        spacing={2}
         flex='1' 
         position='relative' 
         direction={isSmallScreen ?  'column' : 'row'} 
@@ -39,10 +40,7 @@ export const About = () => {
         <Texts />
         {isSmallScreen ? null : <img src={BackgroundImage} alt="Imagem ilustrativa" height='500px' />}
       </Stack>
-      <Stack direction='column' spacing={4} alignItems={'center'}>
-        <Typography variant="h4">Também estamos presente no <Link underline='hover' href='https://www.instagram.com/lovelacelines/' target='_blank' rel='noreferrer'>Instagram</Link></Typography>
-        <FeedInstagram />
-      </Stack>
+      <FeedInstagram />
     </Container>
   );
 };
