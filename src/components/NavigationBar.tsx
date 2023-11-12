@@ -2,13 +2,11 @@ import { AppBar, Box, Container, IconButton, Link, Menu, MenuItem, Stack, SxProp
 import { Brightness4, Brightness5, GitHub, LinkedIn, Menu as MenuIcon } from '@mui/icons-material';
 import { Link as ScrollLink } from 'react-scroll';
 import logo from '../assets/logo.svg';
-import logoAlternative from '../assets/logo.alternative.svg';
 import { useTheme } from '../shared/themes';
 import { useState } from 'react';
 
 export const NavigationBar = () => { 
   const { themeName, toggleTheme } = useTheme();
-  const logoSrc = themeName === 'light' ? logoAlternative : logo;
 
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
@@ -36,16 +34,18 @@ export const NavigationBar = () => {
   ];
 
   const Logo = ({src}: {src: string}) => (
-    <Stack direction='row' alignItems='center' justifyContent='center' spacing={1}>
-      <img src={src} alt='Logo' style={{ height: '30px' }} />
-    </Stack>
+    <Link href='#home' underline='none'>
+      <Stack>
+        <img src={src} alt='Logo' style={{ height: '30px' }} />
+      </Stack>
+    </Link>
   );
 
   const NavigationLinks = () => (
     <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={isSmallScreen ? 0 : 4} color='inherit'>
       {navLinks.map((link) => (
         <ScrollLink key={link.to} to={link.to} smooth={true} duration={500}>
-          <MenuItem key={link.to} onClick={handleCloseNavMenu}>
+          <MenuItem onClick={handleCloseNavMenu}>
             {link.text}
           </MenuItem>
         </ScrollLink>
@@ -98,7 +98,7 @@ export const NavigationBar = () => {
         <Toolbar disableGutters>
           <Stack flex='1' alignItems='center' direction='row' justifyContent='space-between'>
             <HamburgerMenu />
-            <Logo src={logoSrc} />
+            <Logo src={logo} />
             <Box sx={{ display: { xs:'none', md: 'flex' } }}>
               <NavigationLinks />
             </Box>

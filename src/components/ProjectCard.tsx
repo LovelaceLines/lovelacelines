@@ -4,7 +4,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { useState } from 'react';
 
 export interface IProjectCardProps {
-  images: { path: string }[];
+  imagesPath: string[];
   startDate: string;
   endDate: string;
   title: string;
@@ -12,34 +12,35 @@ export interface IProjectCardProps {
   buttons: { name: string; link: string }[];
 }
 
+const ImageStyle = {
+  width: '100%', 
+  height: '100%',
+  aspectRatio: '16/9'
+};
+
 export const ProjectCard = (props: IProjectCardProps) => {
   const [activeStep, setActiveStep] = useState(0);
-  const maxSteps = props.images.length;
+  const maxSteps = props.imagesPath.length;
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    setActiveStep((step) => step === maxSteps - 1 ? step = 0 : step + 1);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
-  const ImageStyle = {
-    width: '100%', 
-    aspectRatio: '16/9'
+    setActiveStep((step) => step === 0 ? step = maxSteps - 1 : step - 1);
   };
 
   const Carousel = () => (
-    <CardMedia style={{ 'position': 'relative' }}>
-      <img src={props.images[activeStep].path} alt={`Step ${activeStep}`} style={ImageStyle} />
+    <CardMedia sx={{ position: 'relative' }}>
+      <img src={props.imagesPath[activeStep]} alt={`Step ${activeStep}`} style={ImageStyle} />
       <MobileStepper variant='dots' steps={maxSteps} position="static" activeStep={activeStep}
         nextButton={
-          <IconButton size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+          <IconButton size="small" onClick={handleNext}>
             <KeyboardArrowRightIcon />
           </IconButton>
         }
         backButton={
-          <IconButton size="small" onClick={handleBack} disabled={activeStep === 0}>
+          <IconButton size="small" onClick={handleBack}>
             <KeyboardArrowLeftIcon />
           </IconButton>
         }
@@ -56,7 +57,7 @@ export const ProjectCard = (props: IProjectCardProps) => {
   );
 
   const Buttons = () => (
-    <Stack direction='row' spacing={2}>
+    <Stack direction='row' spacing={2} flexWrap='wrap' useFlexGap>
       {props.buttons.map((button, index) => (
         <Button variant='outlined' size='small' key={index} href={button.link}>{button.name}</Button>
       ))}
