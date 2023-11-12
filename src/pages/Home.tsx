@@ -8,7 +8,7 @@ const backgroundStyles = {
   backgroundPosition: 'center',
   backgroundRepeat: 'no-repeat',
   backgroundAttachment: 'fixed',
-  minHeight: '100vh',
+  height: '100vh',
   flex: '1',
   display: 'flex',
   alignItems: 'center',

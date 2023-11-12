@@ -1,4 +1,4 @@
-import { AppBar, Box, Container, IconButton, Link, Menu, MenuItem, Stack, SxProps, Theme, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { AppBar, Box, Container, IconButton, Link, Menu, MenuItem, Stack, Theme, Toolbar, useMediaQuery } from '@mui/material';
 import { Brightness4, Brightness5, GitHub, LinkedIn, Menu as MenuIcon } from '@mui/icons-material';
 import { Link as ScrollLink } from 'react-scroll';
 import logo from '../assets/logo.svg';
@@ -93,7 +93,7 @@ export const NavigationBar = () => {
   );
 
   return (
-    <AppBar position='sticky'>
+    <AppBar>
       <Container>
         <Toolbar disableGutters>
           <Stack flex='1' alignItems='center' direction='row' justifyContent='space-between'>

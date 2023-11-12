@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Stack, Typography } from '@mui/material';
+import { Box, Container, Grid, Link, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
 
@@ -23,7 +23,9 @@ const reelsStyles = {
   aspectRatio: '9/16',
 };
 
+
 export const FeedInstagram = () => {
+  const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
   const [feed, setFeed] = useState<FeedInstagramProps[]>([]);
 
   const getFeed = async () => { 
@@ -43,7 +45,7 @@ export const FeedInstagram = () => {
   }, []);
 
   const Reels = (post: FeedInstagramProps) => (
-    <video src={post.media_url} autoPlay muted loop width='100%' />
+    <video src={post.media_url} controls autoPlay muted loop width='100%' />
   );
 
   const PublicationReels = (post: FeedInstagramProps[]) => (
@@ -60,15 +62,17 @@ export const FeedInstagram = () => {
   );
 
   const Image = (post: FeedInstagramProps) => (
-    <Box key={post.id}>
-      <img src={post.media_url} 
-        style={{ width:'100%', aspectRatio:'1/1', objectFit:'cover' }} 
-        alt={post.caption ?? ''} />
+    <Box height='100%'>
+      <Link href={post.permalink} target='_blank' rel='noreferrer'>
+        <img src={post.media_url} 
+          style={{ width:'100%', height:'100%', aspectRatio:'1/1', objectFit:'cover' }} 
+          alt={post.caption ?? ''} />
+      </Link>
     </Box>
   );
 
   const PublicationImage = (post: FeedInstagramProps[]) => (
-    <Grid container spacing={4}>
+    <Grid container spacing={0.5}>
       {post.filter(p => p.media_type === 'IMAGE' || p.media_type === 'CAROUSEL_ALBUM')
         .slice(0, 9)
         .map(p => (
@@ -83,11 +87,11 @@ export const FeedInstagram = () => {
   return (
     <>
       {feed.length === 0 ? null : (
-        <Container maxWidth='md'>
-          <Stack direction='column'>
-            {PublicationReels(feed)}
+        <Container maxWidth='md' disableGutters={isSmallScreen}>
+          <Box>
+            {!isSmallScreen && PublicationReels(feed)}
             {PublicationImage(feed)}
-          </Stack>
+          </Box>
         </Container>
       )}
     </>

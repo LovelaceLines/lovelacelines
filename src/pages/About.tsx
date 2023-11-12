@@ -1,4 +1,4 @@
-import { Box, Container, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
+import { Box, Container, Link, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
 import BackgroundImage from '../assets/about-illustration.png';
 import {FeedInstagram} from  '../components';
 
@@ -39,7 +39,10 @@ export const About = () => {
         <Texts />
         {isSmallScreen ? null : <img src={BackgroundImage} alt="Imagem ilustrativa" height='500px' />}
       </Stack>
-      <FeedInstagram />
+      <Stack direction='column' spacing={4} alignItems={'center'}>
+        <Typography variant="h4">Também estamos presente no <Link underline='hover' href='https://www.instagram.com/lovelacelines/' target='_blank' rel='noreferrer'>Instagram</Link></Typography>
+        <FeedInstagram />
+      </Stack>
     </Container>
   );
 };
