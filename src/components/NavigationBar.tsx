@@ -4,13 +4,15 @@ import { Link as ScrollLink } from 'react-scroll';
 import logo from '../assets/logo.svg';
 import { useTheme } from '../shared/themes';
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const NavigationBar = () => { 
   const { themeName, toggleTheme } = useTheme();
-
+  const { pathname } = useLocation();
+  const path = pathname.split('/')[1];
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
 
-  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -26,6 +28,7 @@ export const NavigationBar = () => {
     { to: 'projects', text: 'Soluções' },
     { to: 'process', text: 'Desenvolvimento' },
     { to: 'contact', text: 'Contato' },
+    { to: 'blog', text: 'Blog'},
   ];
   
   const socialLinks = [
@@ -34,7 +37,7 @@ export const NavigationBar = () => {
   ];
 
   const Logo = ({src}: {src: string}) => (
-    <Link href='#home' underline='none'>
+    <Link href='/home' underline='none'>
       <Stack>
         <img src={src} alt='Logo' style={{ height: '30px' }} />
       </Stack>
@@ -43,13 +46,21 @@ export const NavigationBar = () => {
 
   const NavigationLinks = () => (
     <Stack direction={isSmallScreen ? 'column' : 'row'} spacing={isSmallScreen ? 0 : 4} color='inherit'>
-      {navLinks.map((link) => (
-        <ScrollLink key={link.to} to={link.to} smooth={true} duration={500}>
-          <MenuItem onClick={handleCloseNavMenu}>
-            {link.text}
-          </MenuItem>
-        </ScrollLink>
-      ))}
+      {navLinks.map(link => 
+        link.to === 'blog' ?
+          <Link key={link.to} href='blog' underline='none' color='primary.contrastText'>
+            <MenuItem onClick={handleCloseNavMenu}>{link.text}</MenuItem>
+          </Link>
+          : path === 'home' ?
+            <ScrollLink key={link.to} to={link.to} smooth duration={500}>
+              <MenuItem onClick={handleCloseNavMenu}>{link.text}</MenuItem>
+            </ScrollLink>
+            : path === 'blog' ?
+              <Link key={link.to} href='home' underline='none' color='primary.contrastText'>
+                <MenuItem onClick={handleCloseNavMenu}>{link.text}</MenuItem>
+              </Link>
+              : null
+      )}
     </Stack>
   );
 

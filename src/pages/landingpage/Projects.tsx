@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
-import { IProjectCardProps, ProjectCard } from '../components/ProjectCard';
+import { IProjectCardProps, ProjectCard } from '../../components/ProjectCard';
 
 const projectCardProps: IProjectCardProps[] = [
   {

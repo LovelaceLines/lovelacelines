@@ -1,6 +1,6 @@
 import { Box, Button, Container, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import BackgroundImage from '../assets/home-background.png';
+import BackgroundImage from '../../assets/home-background.png';
 
 const backgroundStyles = {
   backgroundImage: `url(${BackgroundImage})`,

@@ -1,6 +1,6 @@
 import { Box, Container, Link, Stack, Theme, Typography, useMediaQuery } from '@mui/material';
-import BackgroundImage from '../assets/about-illustration.png';
-import {FeedInstagram} from  '../components';
+import BackgroundImage from '../../assets/about-illustration.png';
+import {FeedInstagram} from  '../../components';
 
 export const About = () => {
   const isSmallScreen = useMediaQuery((theme: Theme) => theme.breakpoints.down('md'));
