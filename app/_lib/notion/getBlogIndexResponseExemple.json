@@ -1,0 +1,332 @@
+/*{
+    "pai": "9e81a271-0dbe-45d5-aeb0-46e937a005be",
+    "blog": "2845c5dc-5d35-4da5-9f35-5b7f2ffb578f",
+    "blog-collection": [
+        "3b0fc98a-aa50-4384-a7de-f69037db9ee0",
+        "2218901d-d111-4791-8fa4-d37bee5f638d",
+    ]
+}*/
+{
+    "cursor": {
+        "stack": []
+    },
+    "recordMap": {
+        "block": {
+            "2845c5dc-5d35-4da5-9f35-5b7f2ffb578f": {
+                "value": {
+                    "id": "2845c5dc-5d35-4da5-9f35-5b7f2ffb578f",
+                    "version": 40,
+                    "type": "page",
+                    "properties": {
+                        "title": [
+                            [
+                                "Blog"
+                            ]
+                        ]
+                    },
+                    "content": [
+                        "1534f832-dc2b-45ed-a574-751daf68fa4e"
+                    ],
+                    "format": {
+                        "page_icon": "https://prod-files-secure.s3.us-west-2.amazonaws.com/e2d58b68-3cb8-43a6-b9b0-02f19bd33292/aec079ef-14dd-4b74-a8ce-cbf0c48eb601/android-chrome-512x512.png",
+                        "page_cover": "https://images.unsplash.com/photo-1484417894907-623942c8ee29?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb",
+                        "page_cover_position": 0.5
+                    },
+                    "created_time": 1700479621696,
+                    "last_edited_time": 1700603185930,
+                    "parent_id": "9e81a271-0dbe-45d5-aeb0-46e937a005be",
+                    "parent_table": "block",
+                    "alive": true,
+                    "file_ids": [
+                        "ff94f8d4-3e4e-4a01-8169-86bed6ccd5f8",
+                        "3f2dda56-a08d-4508-98b9-12e923fefb13",
+                        "aec079ef-14dd-4b74-a8ce-cbf0c48eb601"
+                    ],
+                    "created_by_table": "notion_user",
+                    "created_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "last_edited_by_table": "notion_user",
+                    "last_edited_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "space_id": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292"
+                },
+                "role": "editor"
+            },
+            "9e81a271-0dbe-45d5-aeb0-46e937a005be": {
+                "value": {
+                    "id": "9e81a271-0dbe-45d5-aeb0-46e937a005be",
+                    "version": 39,
+                    "type": "page",
+                    "properties": {
+                        "title": [
+                            [
+                                "Lovelace Lines"
+                            ]
+                        ]
+                    },
+                    "content": [
+                        "31ee77db-aea2-4a60-89a2-4e0270724177",
+                        "2845c5dc-5d35-4da5-9f35-5b7f2ffb578f"
+                    ],
+                    "permissions": [
+                        {
+                            "role": "editor",
+                            "type": "user_permission",
+                            "user_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760"
+                        }
+                    ],
+                    "created_time": 1693103916115,
+                    "last_edited_time": 1700479621701,
+                    "parent_id": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292",
+                    "parent_table": "space",
+                    "alive": true,
+                    "created_by_table": "notion_user",
+                    "created_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "last_edited_by_table": "notion_user",
+                    "last_edited_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "space_id": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292"
+                },
+                "role": "editor"
+            },
+            "1534f832-dc2b-45ed-a574-751daf68fa4e": {
+                "value": {
+                    "id": "1534f832-dc2b-45ed-a574-751daf68fa4e",
+                    "version": 37,
+                    "type": "collection_view",
+                    "view_ids": [
+                        "d4092b93-9b91-4cda-bde6-18467801f827"
+                    ],
+                    "collection_id": "1fdec9fd-ed95-49e5-a48c-37cca7ae8c9d",
+                    "format": {
+                        "collection_pointer": {
+                            "id": "1fdec9fd-ed95-49e5-a48c-37cca7ae8c9d",
+                            "table": "collection",
+                            "spaceId": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292"
+                        }
+                    },
+                    "created_time": 1700479749533,
+                    "last_edited_time": 1700603582961,
+                    "parent_id": "2845c5dc-5d35-4da5-9f35-5b7f2ffb578f",
+                    "parent_table": "block",
+                    "alive": true,
+                    "created_by_table": "notion_user",
+                    "created_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "last_edited_by_table": "notion_user",
+                    "last_edited_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "space_id": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292"
+                },
+                "role": "editor"
+            }
+        },
+        "space": {
+            "e2d58b68-3cb8-43a6-b9b0-02f19bd33292": {
+                "value": {
+                    "id": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292",
+                    "version": 15,
+                    "name": "Lovelace Lines",
+                    "permissions": [
+                        {
+                            "role": "editor",
+                            "type": "user_permission",
+                            "user_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760"
+                        }
+                    ],
+                    "icon": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/1f722761-3b58-4982-af27-7adcd16c53f0/Logo_Background_Black_v2.png",
+                    "beta_enabled": false,
+                    "created_time": 1692238295788,
+                    "last_edited_time": 1692569656958,
+                    "created_by_table": "notion_user",
+                    "created_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "last_edited_by_table": "notion_user",
+                    "last_edited_by_id": "65d153d8-9bd9-41d4-9d9b-b5e27f155760",
+                    "plan_type": "personal",
+                    "invite_link_enabled": true,
+                    "settings": {
+                        "is_teams_enabled": false,
+                        "enable_ai_feature": true,
+                        "space_survey_data": {
+                            "intent": {
+                                "value": "team",
+                                "version": 1,
+                                "collected_at": 1692238300093,
+                                "collected_from": "onboarding"
+                            },
+                            "use_cases": {
+                                "value": [
+                                    "docs"
+                                ],
+                                "version": 3,
+                                "collected_at": 1692238300093,
+                                "collected_from": "onboarding"
+                            },
+                            "company_size": {
+                                "value": "1_49",
+                                "version": 2,
+                                "collected_at": 1692238300093,
+                                "collected_from": "onboarding"
+                            }
+                        },
+                        "disable_ai_feature": false,
+                        "first_invited_member_time": 1692238312754,
+                        "seen_guest_membership_requests": true
+                    },
+                    "subscription_tier": "free"
+                },
+                "role": "editor"
+            }
+        },
+        "collection_view": {
+            "d4092b93-9b91-4cda-bde6-18467801f827": {
+                "value": {
+                    "id": "d4092b93-9b91-4cda-bde6-18467801f827",
+                    "version": 13,
+                    "type": "table",
+                    "format": {
+                        "table_wrap": true,
+                        "table_properties": [
+                            {
+                                "width": 276,
+                                "visible": true,
+                                "property": "title"
+                            },
+                            {
+                                "width": 200,
+                                "visible": true,
+                                "property": "B~BT"
+                            },
+                            {
+                                "width": 200,
+                                "visible": true,
+                                "property": "bwio"
+                            },
+                            {
+                                "width": 200,
+                                "visible": true,
+                                "property": "]u|u"
+                            },
+                            {
+                                "width": 200,
+                                "visible": true,
+                                "property": "RgnR"
+                            },
+                            {
+                                "width": 200,
+                                "visible": true,
+                                "property": "t{id"
+                            }
+                        ],
+                        "collection_pointer": {
+                            "id": "1fdec9fd-ed95-49e5-a48c-37cca7ae8c9d",
+                            "table": "collection",
+                            "spaceId": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292"
+                        },
+                        "table_frozen_column_index": -1
+                    },
+                    "parent_id": "1534f832-dc2b-45ed-a574-751daf68fa4e",
+                    "parent_table": "block",
+                    "alive": true,
+                    "page_sort": [
+                        "3b0fc98a-aa50-4384-a7de-f69037db9ee0",
+                        "2218901d-d111-4791-8fa4-d37bee5f638d",
+                        "789f38c6-1424-45b8-8f64-2cb75402b589",
+                        "da8b5fff-8936-4cf2-9551-4579b0bd5b93",
+                        "ffa48907-a30d-4e56-bd98-a0ac5089bc5d"
+                    ],
+                    "space_id": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292"
+                },
+                "role": "editor"
+            }
+        },
+        "collection": {
+            "1fdec9fd-ed95-49e5-a48c-37cca7ae8c9d": {
+                "value": {
+                    "id": "1fdec9fd-ed95-49e5-a48c-37cca7ae8c9d",
+                    "version": 28,
+                    "name": [
+                        [
+                            "Blog"
+                        ]
+                    ],
+                    "schema": {
+                        "B~BT": {
+                            "name": "Slug",
+                            "type": "multi_select",
+                            "options": [
+                                {
+                                    "id": "1b0b9962-8a70-42c1-94d6-834f54d6198c",
+                                    "color": "default",
+                                    "value": "neque-porro"
+                                },
+                                {
+                                    "id": "82c3b1c8-1ca9-45d5-91ef-e78a9e3b368d",
+                                    "color": "green",
+                                    "value": "neque-quisquam"
+                                }
+                            ]
+                        },
+                        "RgnR": {
+                            "name": "Published",
+                            "type": "checkbox"
+                        },
+                        "]u|u": {
+                            "name": "Authors",
+                            "type": "person"
+                        },
+                        "bwio": {
+                            "name": "Tags",
+                            "type": "multi_select",
+                            "options": [
+                                {
+                                    "id": "987157f2-812c-49bb-97f6-d9a90ce0405a",
+                                    "color": "green",
+                                    "value": "desenvolvimento"
+                                },
+                                {
+                                    "id": "ca16df01-d278-4523-a1c5-e200de28b0f2",
+                                    "color": "gray",
+                                    "value": "dotnet"
+                                },
+                                {
+                                    "id": "5563daad-ffb2-42ee-96f3-b7c5b3d84e72",
+                                    "color": "orange",
+                                    "value": "teste"
+                                },
+                                {
+                                    "id": "21a6707a-bac3-44ab-b436-a2b638d479b5",
+                                    "color": "brown",
+                                    "value": "react"
+                                }
+                            ]
+                        },
+                        "t{id": {
+                            "name": "Date",
+                            "type": "date"
+                        },
+                        "title": {
+                            "name": "Page",
+                            "type": "title"
+                        }
+                    },
+                    "format": {
+                        "collection_page_properties": [
+                            {
+                                "visible": true,
+                                "property": "B~BT"
+                            }
+                        ]
+                    },
+                    "parent_id": "1534f832-dc2b-45ed-a574-751daf68fa4e",
+                    "parent_table": "block",
+                    "alive": true,
+                    "migrated": true,
+                    "space_id": "e2d58b68-3cb8-43a6-b9b0-02f19bd33292",
+                    "deleted_schema": {
+                        ":Ka?": {
+                            "name": "Tags",
+                            "type": "text"
+                        }
+                    }
+                },
+                "role": "editor"
+            }
+        }
+    }
+}

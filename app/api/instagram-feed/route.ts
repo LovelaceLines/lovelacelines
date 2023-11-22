@@ -1,6 +1,3 @@
-import Axios from "axios";
-import { unstable_cache } from "next/cache";
-
 // https://developers.facebook.com/docs/instagram-basic-display-api/reference/media/
 
 const revalidate = 24 * 60 * 60; // 24 hours

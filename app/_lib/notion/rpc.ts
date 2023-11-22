@@ -1,9 +1,9 @@
 import fetch, { Response } from 'node-fetch';
 
-export const rpc = async (fnName: string, body: any) => {
+export const rpc = async <T>(fnName: string, body: any): Promise<T> => {
   const { NOTION_TOKEN, NOTION_API_ENDPOINT } = process.env;
 
-  if (NOTION_TOKEN || NOTION_API_ENDPOINT) 
+  if (!NOTION_TOKEN || !NOTION_API_ENDPOINT) 
     throw new Error('Missing NOTION_TOKEN or NOTION_API_ENDPOINT env variables.')
 
   const url = `${NOTION_API_ENDPOINT}/${fnName}`;
@@ -18,7 +18,7 @@ export const rpc = async (fnName: string, body: any) => {
     body: JSON.stringify(body),
   });
   
-  if (res.ok) return await res.json();
+  if (res.ok) return await res.json() as T;
   
   throw new Error(await getError(res));
 }
