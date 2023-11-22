@@ -14,7 +14,7 @@ export interface ILoadPageChunkBlock {
     };
     content: string[];
     permissions?: any[];
-    view_ids?: string[];
+    view_ids: string[];
     collection_id?: string;
     format?: {
       block_icon: string;
@@ -41,7 +41,6 @@ export interface ILoadPageChunkBlock {
   };
   role: string;
 }
-
 
 export interface ILoadPageChunkResponse {
   cursor: { stack: any[] };
@@ -172,6 +171,9 @@ export interface ILoadPageChunkResponse {
   };
 }
 
+/**
+ * Consume a API do Notion para obter os dados da tabela de posts (tabela Blog).
+ */
 export const getBlogIndex = async (previews: boolean = true) => {
   const { BLOG_INDEX_ID, BLOG_INDEX_CACHE, USE_CACHE } = process.env;
   let postsTable: any;
@@ -193,7 +195,7 @@ export const getBlogIndex = async (previews: boolean = true) => {
         verticalColumns: false,
       });
 
-      const block = values(data.recordMap.block)
+      let block: ILoadPageChunkBlock = values(data.recordMap.block)
         .find((block: ILoadPageChunkBlock) => block.value.type === 'collection_view');
       
       postsTable = await loadTable(block, true);

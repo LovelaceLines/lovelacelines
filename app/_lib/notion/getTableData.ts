@@ -1,3 +1,4 @@
+import { ILoadPageChunkBlock } from "./getBlogIndex";
 import rpc, { values } from "./rpc";
 import Slugger from 'github-slugger';
 
@@ -41,10 +42,9 @@ const normalizeSlug = (slug: string):string => {
   return startingSlash || endingSlash ? normalizeSlug(slug) : slug;
 }
 
-export const loadTable = async (collectionBlock: any, isPosts:boolean = false) => {
+export const loadTable = async (block: ILoadPageChunkBlock, isPosts:boolean = false) => {
   const slugger = new Slugger();
-
-  const { value } = collectionBlock;
+  const value = block.value;
   let table: any = {};
   const col: any = await queryCollection({
     collectionId: value.id,

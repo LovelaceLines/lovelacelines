@@ -1,4 +1,4 @@
-import fetch, { Response } from 'node-fetch';
+const revalidate = 24 * 60 * 60; // 24 hours
 
 export const rpc = async <T>(fnName: string, body: any): Promise<T> => {
   const { NOTION_TOKEN, NOTION_API_ENDPOINT } = process.env;
@@ -16,8 +16,9 @@ export const rpc = async <T>(fnName: string, body: any): Promise<T> => {
     method: 'POST',
     headers,
     body: JSON.stringify(body),
+    next: { revalidate: revalidate },
   });
-  
+
   if (res.ok) return await res.json() as T;
   
   throw new Error(await getError(res));
@@ -31,7 +32,7 @@ export const getError = async (res: Response) =>
     \n${await getBodyOrNull(res)}`
 
 export const getJSONHeaders = (res: Response) =>
-  JSON.stringify(res.headers.raw());
+  JSON.stringify(res.headers);
 
 export const getBodyOrNull = async (res: Response) => {
   try {
