@@ -3,6 +3,9 @@ import { rpc, values } from './rpc';
 import { loadTable } from './getTableData';
 import { getPostPreview } from './getPostPreview';
 import fs from 'fs';
+import { createAgent } from 'notionapi-agent';
+import { LoadPageChunk } from 'notionapi-agent/dist/interfaces/notion-api/v3/loadPageChunk';
+import { BlockRecord } from 'notionapi-agent/dist/interfaces/notion-api/v3/Record';
 
 export interface ILoadPageChunkBlock {
   value: {
@@ -42,142 +45,15 @@ export interface ILoadPageChunkBlock {
   role: string;
 }
 
-export interface ILoadPageChunkResponse {
-  cursor: { stack: any[] };
-  recordMap: {
-    block: {
-      [key: string]: ILoadPageChunkBlock;
-    };
-    space: {
-      [key: string]: {
-        value: {
-          id: string;
-          version: number;
-          name: string;
-          permissions: {
-            role: string;
-            type: string;
-            user_id: string;
-          }[];
-          icon: string;
-          beta_enabled: boolean;
-          created_time: number;
-          last_edited_time: number;
-          created_by_table: string;
-          created_by_id: string;
-          last_edited_by_table: string;
-          last_edited_by_id: string;
-          plan_type: string;
-          invite_link_enabled: boolean;
-          settings: {
-            is_teams_enabled: boolean;
-            enable_ai_feature: boolean;
-            space_survey_data: {
-              intent: {
-                value: string;
-                version: number;
-                collected_at: number;
-                collected_from: string;
-              };
-              use_cases: {
-                value: string[];
-                version: number;
-                collected_at: number;
-                collected_from: string;
-              };
-              company_size: {
-                value: string;
-                version: number;
-                collected_at: number;
-                collected_from: string;
-              };
-            };
-            disable_ai_feature: boolean;
-            first_invited_member_time: number;
-            seen_guest_membership_requests: boolean;
-          };
-          subscription_tier: string;
-        };
-        role: string;
-      }
-    };
-    collection_view: {
-      [key: string]: {
-        value: {
-          id: string;
-          version: number;
-          type: string;
-          format: {
-            table_wrap: boolean;
-            table_properties: {
-              visible: boolean;
-              property: string;
-              width: number;
-            }[];
-            collection_pointer: {
-              id: string;
-              table: string;
-              spaceId: string;
-            };
-            table_frozen_column_index: number;
-          };
-          parent_id: string;
-          parent_table: string;
-          alive: boolean;
-          page_sort: string[];
-          space_id: string;
-        };
-        role: string;
-      };
-    };
-    collection: {
-      [key: string]: {
-        value: {
-          id: string;
-          version: number;
-          name: string[][];
-          schema: {
-            [key: string]: {
-              name: string;
-              type: string;
-              options?: {
-                id: string;
-                color: string;
-                value: string;
-              }[];
-            };
-          };
-          format: {
-            collection_page_properties: {
-              visible: boolean;
-              property: string;
-            }[];
-          };
-          parent_id: string;
-          parent_table: string;
-          alive: boolean;
-          migrated: boolean;
-          space_id: string;
-          deleted_schema: {
-            [key: string]: {
-              name: string;
-              type: string;
-            };
-          };
-        };
-        role: string;
-      };
-    };
-  };
-}
-
 /**
  * Consume a API do Notion para obter os dados da tabela de posts (tabela Blog).
  */
 export const getBlogIndex = async (previews: boolean = true) => {
   const { BLOG_INDEX_ID, BLOG_INDEX_CACHE, USE_CACHE } = process.env;
+  if (!BLOG_INDEX_ID || !BLOG_INDEX_CACHE || !USE_CACHE) throw new Error('Missing env variables for Notion Blog Index');
+
   let postsTable: any;
-  const cacheFile = `${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`;
+  const cacheFile = `.${BLOG_INDEX_CACHE}${previews ? '_previews' : ''}`;
 
   if (USE_CACHE === 'true') {
     try {
@@ -187,20 +63,27 @@ export const getBlogIndex = async (previews: boolean = true) => {
 
   if (!postsTable) {
     try {
-      const data = await rpc<ILoadPageChunkResponse>('loadPageChunk', {
+      const req: LoadPageChunk.Request = {
         pageId: BLOG_INDEX_ID,
         limit: 100,
-        cursor: { stack: [] },
         chunkNumber: 0,
+        cursor: { stack: [] },
         verticalColumns: false,
+      }
+    
+      const agent = createAgent({
+        token: process.env.NOTION_TOKEN,
       });
 
-      let block: ILoadPageChunkBlock = values(data.recordMap.block)
-        .find((block: ILoadPageChunkBlock) => block.value.type === 'collection_view');
+      const data: LoadPageChunk.Response = await agent.loadPageChunk(req);
+
+      let blockRecord: BlockRecord = values(data.recordMap.block)
+        .find((blockRecord: BlockRecord) => blockRecord.value!.type === 'collection_view');
       
-      postsTable = await loadTable(block, true);
+      postsTable = await loadTable(blockRecord, true);
     } catch (err) {
       console.warn(`Failed to load Notion posts table`);
+      if (process.env.NODE_ENV === 'development') console.error(err);
       return {};
     }
 

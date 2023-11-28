@@ -19,6 +19,7 @@
     "github-slugger": "^2.0.0",
     "next": "14.0.3",
     "node-fetch": "^3.3.2",
+    "notionapi-agent": "^3.0.0",
     "react": "^18",
     "react-dom": "^18"
   },

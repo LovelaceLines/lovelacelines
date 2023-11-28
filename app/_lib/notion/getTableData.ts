@@ -1,6 +1,11 @@
 import { ILoadPageChunkBlock } from "./getBlogIndex";
 import rpc, { values } from "./rpc";
 import Slugger from 'github-slugger';
+import { createAgent } from 'notionapi-agent';
+import { Block } from "notionapi-agent/dist/interfaces";
+import { LoadPageChunk } from 'notionapi-agent/dist/interfaces/notion-api/v3/loadPageChunk';
+import { QueryCollection } from "notionapi-agent/dist/interfaces/notion-api/v3/queryCollection";
+import { BlockRecord } from 'notionapi-agent/dist/interfaces/notion-api/v3/Record';
 
 const queryCollection = ({ collectionId, collectionViewId, loader = {}, query = {} }: any) => {
   const queryCollectionBody = {
@@ -42,9 +47,50 @@ const normalizeSlug = (slug: string):string => {
   return startingSlash || endingSlash ? normalizeSlug(slug) : slug;
 }
 
-export const loadTable = async (block: ILoadPageChunkBlock, isPosts:boolean = false) => {
+export const loadTable = async (blockRecord: BlockRecord, isPosts:boolean = false) => {
+  if (typeof blockRecord.value === "undefined") throw new Error("Block is undefined in loadTable");
+
+  const agent = createAgent({
+    token: process.env.NOTION_TOKEN,
+  });
+
+  const block: Block = blockRecord.value;
+  const anyBlock: any = blockRecord.value;
+  const view_ids = anyBlock.view_ids;
+
+  const req: QueryCollection.Request = {
+    collection: {
+      id: block.id,
+    },
+    collectionView: {
+      id: view_ids[0],
+    },
+    loader: {
+      type: 'reducer',
+      reducers: {
+        collection_group_results: {
+          type: 'results',
+          limit: 999, 
+          loadContentCover: true,
+        },
+        'table:uncategorized:title:count': {
+          type: 'aggregation',
+          aggregation: {
+            property: 'title',
+            aggregator: 'count',
+          },
+        },
+      },
+      searchQuery: '',
+      userTimeZone: 'America/Sao_Paulo',
+    },
+  };
+
+  const res: QueryCollection.Response = await agent.queryCollection(req);
+  /*
+  agent.queryCollection
   const slugger = new Slugger();
-  const value = block.value;
+  const value = blockRecord.value;
   let table: any = {};
   const col: any = await queryCollection({
     collectionId: value.id,
@@ -116,5 +162,5 @@ export const loadTable = async (block: ILoadPageChunkBlock, isPosts:boolean = fa
     }
   }
 
-  return table;
+  return table;*/
 }
